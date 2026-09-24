@@ -204,7 +204,7 @@ function ChatWindow({ threadId }: { threadId: string }) {
                   </>
                 )}
               </div>
-              <PromptInputSubmit status={send.isPending ? "submitted" : undefined} disabled={send.isPending} />
+              <PromptInputSubmit {...(send.isPending ? { status: "submitted" as const } : {})} disabled={send.isPending} />
             </PromptInputFooter>
           </PromptInput>
         </div>
