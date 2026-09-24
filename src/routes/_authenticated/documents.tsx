@@ -71,36 +71,36 @@ function DocumentsPage() {
         Add PDFs here. Atlas extracts the text, splits it into passages, embeds them and indexes them for search.
       </p>
 
-      <section className="panel mt-8 p-6">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="space-y-2">
-            <Label htmlFor="domain">Domain or collection (optional)</Label>
-            <Input
-              id="domain"
-              placeholder="e.g. HR policies, Product manuals"
-              value={domain}
-              onChange={(e) => setDomain(e.target.value)}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="file">PDF file</Label>
-            <Input
-              id="file"
-              ref={fileRef}
-              type="file"
-              accept="application/pdf"
-              disabled={upload.isPending}
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) upload.mutate(file);
-              }}
-            />
-          </div>
+      <section className="mt-8 grid gap-5 border-y border-border py-6 sm:grid-cols-[minmax(0,1fr)_minmax(280px,0.85fr)]">
+        <div className="space-y-2">
+          <Label htmlFor="domain">Domain or collection (optional)</Label>
+          <Input
+            id="domain"
+            placeholder="e.g. HR policies, Product manuals"
+            value={domain}
+            onChange={(e) => setDomain(e.target.value)}
+          />
+          <p className="text-xs leading-relaxed text-muted-foreground">A collection name helps keep results from different subjects easy to identify.</p>
         </div>
-        <p className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
-          <UploadCloud className="size-4" />
-          {upload.isPending ? "Extracting, chunking and embedding… this can take a minute." : "Text-based PDFs work best; scanned images cannot be read."}
-        </p>
+        <div>
+          <Input
+            id="file"
+            ref={fileRef}
+            type="file"
+            accept="application/pdf"
+            className="sr-only"
+            disabled={upload.isPending}
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) upload.mutate(file);
+            }}
+          />
+          <Button type="button" variant="outline" className="h-auto w-full flex-col gap-2 border-dashed py-7" disabled={upload.isPending} onClick={() => fileRef.current?.click()}>
+            <UploadCloud className="size-6 text-primary" />
+            <span>{upload.isPending ? "Processing your document…" : "Choose a PDF to add"}</span>
+            <span className="text-xs font-normal text-muted-foreground">Text-based PDFs work best</span>
+          </Button>
+        </div>
       </section>
 
       <section className="mt-8 space-y-3">

@@ -80,14 +80,16 @@ export function AppShell({ children }: { children: ReactNode }) {
                   <MessageSquare className="size-3.5 shrink-0 text-muted-foreground" />
                   <span className="truncate">{thread.title ?? "New conversation"}</span>
                 </Link>
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
+                  size="icon"
                   aria-label="Delete conversation"
-                  className="rounded p-1.5 text-muted-foreground opacity-0 transition-opacity hover:text-destructive group-hover:opacity-100"
+                  className="size-8 text-muted-foreground opacity-0 transition-opacity hover:text-destructive focus:opacity-100 group-hover:opacity-100"
                   onClick={() => remove.mutate(thread.id)}
                 >
                   <Trash2 className="size-3.5" />
-                </button>
+                </Button>
               </li>
             ))}
           </ul>
@@ -107,7 +109,34 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </aside>
 
-      <div className="flex min-w-0 flex-1 flex-col">{children}</div>
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="flex h-16 shrink-0 items-center justify-between border-b border-border px-4 md:hidden">
+          <Link to="/" className="flex items-center gap-2">
+            <img src={mark} alt="Atlas" width={30} height={30} className="size-7" />
+            <span className="font-display text-2xl">Atlas</span>
+          </Link>
+          <nav className="flex items-center gap-1" aria-label="Workspace navigation">
+            <Button size="icon" variant="ghost" aria-label="New conversation" onClick={() => create.mutate()} disabled={create.isPending}>
+              <Plus className="size-4" />
+            </Button>
+            <Button asChild size="icon" variant="ghost">
+              <Link to="/documents" aria-label="Knowledge base"><Library className="size-4" /></Link>
+            </Button>
+            <Button
+              size="icon"
+              variant="ghost"
+              aria-label="Sign out"
+              onClick={async () => {
+                await supabase.auth.signOut();
+                navigate({ to: "/auth" });
+              }}
+            >
+              <LogOut className="size-4" />
+            </Button>
+          </nav>
+        </header>
+        {children}
+      </div>
     </div>
   );
 }
