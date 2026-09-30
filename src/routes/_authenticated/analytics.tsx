@@ -122,7 +122,7 @@ function Quality({ label, value, detail }: { label: string; value: string | numb
   return <div className="rounded-md border border-border bg-card p-4"><p className="text-xs text-muted-foreground">{label}</p><p className="mt-2 font-display text-3xl text-evidence">{value}</p><p className="mt-1 text-xs text-muted-foreground">{detail}</p></div>;
 }
 
-function Filter({ value, onValueChange, placeholder, options }: { value: string; onValueChange: (value: string) => void; placeholder: string; options: string[][] }) {
+function Filter({ value, onValueChange, placeholder, options }: { value: string; onValueChange: (value: string) => void; placeholder: string; options: [string, string][] }) {
   return <Select value={value} onValueChange={onValueChange}><SelectTrigger aria-label={placeholder}><SelectValue placeholder={placeholder} /></SelectTrigger><SelectContent>{options.map(([optionValue, label]) => <SelectItem key={optionValue} value={optionValue}>{label}</SelectItem>)}</SelectContent></Select>;
 }
 

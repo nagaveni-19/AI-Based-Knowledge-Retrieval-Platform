@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Derive Milestone 4 analytics from assistant message metadata rather than duplicating events in a second table, because the existing trace is the authoritative query outcome record.
