@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_authenticated/report")({
   component: ReportPage,
 });
 
-const agents = [
+const agents: [string, string][] = [
   ["Query Understanding Agent", "Classifies intent, estimates confidence, detects ambiguity, and produces the retrieval query."],
   ["Retrieval Agent", "Embeds the search query, retrieves the top eight passages, filters weak matches, and preserves source metadata."],
   ["Response Generation Agent", "Writes only from retrieved evidence and attaches inline numbered citations."],

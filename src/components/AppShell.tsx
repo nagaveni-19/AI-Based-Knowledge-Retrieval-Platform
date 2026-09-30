@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { Library, LogOut, MessageSquare, Plus, Trash2 } from "lucide-react";
+import { BarChart3, ClipboardCheck, FileText, Library, LogOut, MessageSquare, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import type { ReactNode } from "react";
 import mark from "@/assets/atlas-mark.png";
@@ -54,6 +54,21 @@ export function AppShell({ children }: { children: ReactNode }) {
           <Button asChild variant="ghost" className="mt-2 w-full justify-start gap-2">
             <Link to="/documents">
               <Library className="size-4" /> Knowledge base
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" className="mt-1 w-full justify-start gap-2">
+            <Link to="/analytics" activeProps={{ className: "bg-sidebar-accent text-sidebar-accent-foreground" }}>
+              <BarChart3 className="size-4" /> Analytics
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" className="mt-1 w-full justify-start gap-2">
+            <Link to="/testing" activeProps={{ className: "bg-sidebar-accent text-sidebar-accent-foreground" }}>
+              <ClipboardCheck className="size-4" /> Testing
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" className="mt-1 w-full justify-start gap-2">
+            <Link to="/report" activeProps={{ className: "bg-sidebar-accent text-sidebar-accent-foreground" }}>
+              <FileText className="size-4" /> Project report
             </Link>
           </Button>
         </div>
@@ -121,6 +136,15 @@ export function AppShell({ children }: { children: ReactNode }) {
             </Button>
             <Button asChild size="icon" variant="ghost">
               <Link to="/documents" aria-label="Knowledge base"><Library className="size-4" /></Link>
+            </Button>
+            <Button asChild size="icon" variant="ghost">
+              <Link to="/analytics" aria-label="Analytics"><BarChart3 className="size-4" /></Link>
+            </Button>
+            <Button asChild size="icon" variant="ghost">
+              <Link to="/testing" aria-label="Testing"><ClipboardCheck className="size-4" /></Link>
+            </Button>
+            <Button asChild size="icon" variant="ghost">
+              <Link to="/report" aria-label="Project report"><FileText className="size-4" /></Link>
             </Button>
             <Button
               size="icon"
