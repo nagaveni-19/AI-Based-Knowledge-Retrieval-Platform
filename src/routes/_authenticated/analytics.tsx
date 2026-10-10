@@ -73,7 +73,7 @@ function AnalyticsPage() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             <Filter value={period} onValueChange={setPeriod} placeholder="Time period" options={[["all", "All time"], ["7", "Last 7 days"], ["30", "Last 30 days"]]} />
-            <Filter value={domain} onValueChange={setDomain} placeholder="Domain" options={[["all", "All domains"], ...(snapshot.data?.domains ?? []).map((item) => [item, item])]} />
+            <Filter value={domain} onValueChange={setDomain} placeholder="Domain" options={[["all", "All domains"], ...(snapshot.data?.domains ?? []).map((item): [string, string] => [item, item])]} />
             <Filter value={queryType} onValueChange={setQueryType} placeholder="Query type" options={[["all", "All query types"], ["factual", "Factual"], ["procedural", "Procedural"], ["comparative", "Comparative"], ["ambiguous", "Ambiguous"], ["unknown", "Unknown"]]} />
             <Filter value={confidence} onValueChange={setConfidence} placeholder="Confidence" options={[["all", "All confidence"], ["high", "High"], ["medium", "Moderate"], ["low", "Low"]]} />
             <Filter value={status} onValueChange={setStatus} placeholder="Status" options={[["all", "All outcomes"], ["answered", "Answered"], ["clarify", "Clarification"], ["low_confidence", "Low confidence"], ["no_results", "Unanswered"], ["error", "Error"]]} />
